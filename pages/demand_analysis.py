@@ -1,8 +1,8 @@
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from calculations import *
-from model import get_forecast
+from .calculations import *
+from .model import get_forecast
 import streamlit as st
 import pandas as pd
 import plotly.express as px
