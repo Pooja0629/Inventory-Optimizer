@@ -1,9 +1,7 @@
-
 # model.py
 from prophet import Prophet
 import pandas as pd
 import numpy as np
-np.float_ = np.float64
 
 def get_forecast(component_data, periods=90):
     """
@@ -31,4 +29,4 @@ def get_forecast(component_data, periods=90):
     # Generate forecast
     forecast = model.predict(future)
     
-    return forecast                      
+    return forecast
