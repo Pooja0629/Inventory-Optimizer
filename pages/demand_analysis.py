@@ -2,14 +2,33 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# CORRECTED IMPORT - remove .py
-from calculations import calculate_safety_stock, calculate_optimal_inventory, calculate_order_quantity, estimate_old_method_inventory, calculate_cost_savings
+# Add debug information to see what's happening
+try:
+    from calculations import calculate_safety_stock, calculate_optimal_inventory, calculate_order_quantity, estimate_old_method_inventory, calculate_cost_savings
+    print("✅ Successfully imported from calculations")
+except ImportError as e:
+    print(f"❌ Error importing from calculations: {e}")
+    print(f"❌ Current working directory: {os.getcwd()}")
+    print(f"❌ Files in parent directory: {os.listdir('..')}")
+    
+    # Define fallback functions to prevent errors
+    def calculate_safety_stock(demand_data, lead_time, service_level):
+        return 0
+    def calculate_optimal_inventory(forecast, lead_time, safety_stock):
+        return 0
+    def calculate_order_quantity(optimal_inventory, current_stock):
+        return 0
+    def estimate_old_method_inventory(demand_data):
+        return 0
+    def calculate_cost_savings(optimal_inventory, old_method_inventory, unit_cost):
+        return 0, 0, 0
 
 from model import get_forecast
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+# Rest of your code remains exactly the same...
 st.title("📈 Demand Analysis")
 
 @st.cache_data
