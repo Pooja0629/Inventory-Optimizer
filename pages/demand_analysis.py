@@ -1,12 +1,14 @@
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from calculations.py import *
+
+# CORRECTED IMPORT - remove .py
+from calculations import calculate_safety_stock, calculate_optimal_inventory, calculate_order_quantity, estimate_old_method_inventory, calculate_cost_savings
+
 from model import get_forecast
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-
 
 st.title("📈 Demand Analysis")
 
@@ -42,13 +44,7 @@ with col_left:
         fig = px.bar(chart_data, x='Date', y='Units_Used', template="ggplot2")
 
     st.plotly_chart(fig, use_container_width=True)
-with col_right:
-    st.subheader("⚡ AI Recommendations")
-    if st.button("🚀 Run AI Insights"):
-        forecast = get_forecast(comp_data, periods=lead_time + 60)
-        safety_stock = calculate_safety_stock(comp_data['Units_Used'].values, lead_time, service_level)  # Moved inside
-        optimal_inventory = calculate_optimal_inventory(forecast, lead_time, safety_stock)
-    
+
 with col_right:
     st.subheader("⚡ AI Recommendations")
     if st.button("🚀 Run AI Insights"):
