@@ -42,37 +42,7 @@ with col_left:
         fig = px.bar(chart_data, x='Date', y='Units_Used', template="ggplot2")
 
     st.plotly_chart(fig, use_container_width=True)
-import numpy as np
-from scipy import stats
-
-def calculate_safety_stock(demand_data, lead_time, service_level=0.95):
-    """
-    Calculate safety stock based on demand variability and lead time
     
-    Parameters:
-    demand_data: array-like of historical demand
-    lead_time: lead time in days
-    service_level: desired service level (default 95%)
-    
-    Returns:
-    safety_stock: calculated safety stock quantity
-    """
-    try:
-        # Calculate average demand and standard deviation
-        avg_demand = np.mean(demand_data)
-        std_demand = np.std(demand_data)
-        
-        # Calculate z-score for the service level
-        z_score = stats.norm.ppf(service_level)
-        
-        # Safety stock formula: z * σ * √(lead_time)
-        safety_stock = z_score * std_demand * np.sqrt(lead_time)
-        
-        return max(0, safety_stock)  # Ensure non-negative value
-        
-    except Exception as e:
-        print
-
 with col_right:
     st.subheader("⚡ AI Recommendations")
     if st.button("🚀 Run AI Insights"):
