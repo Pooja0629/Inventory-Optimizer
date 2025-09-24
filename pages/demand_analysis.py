@@ -42,6 +42,7 @@ with col_left:
         fig = px.bar(chart_data, x='Date', y='Units_Used', template="ggplot2")
 
     st.plotly_chart(fig, use_container_width=True)
+safety_stock = calculate_safety_stock(comp_data['Units_Used'].values, lead_time, service_level)
     
 with col_right:
     st.subheader("⚡ AI Recommendations")
