@@ -25,7 +25,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# Define the function at the top level (outside any other blocks)
+# Define the function at the TOP LEVEL (outside any other blocks)
 def calculate_safety_stock(demand_data, lead_time, service_level):
     # Calculate standard deviation of demand
     demand_std = np.std(demand_data)
@@ -82,7 +82,7 @@ with col_right:
     if st.button("🚀 Run AI Insights"):
         forecast = get_forecast(comp_data, periods=lead_time + 60)
         
-        # Now call the function (don't define it here)
+        # Now CALL the function (don't define it here)
         safety_stock = calculate_safety_stock(comp_data['Units_Used'].values, lead_time, service_level)
         optimal_inventory = calculate_optimal_inventory(forecast, lead_time, safety_stock)
         order_quantity = calculate_order_quantity(optimal_inventory, current_stock)
