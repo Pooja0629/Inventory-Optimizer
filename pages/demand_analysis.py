@@ -66,7 +66,18 @@ with col_right:
     st.subheader("⚡ AI Recommendations")
     if st.button("🚀 Run AI Insights"):
         forecast = get_forecast(comp_data, periods=lead_time + 60)
-        safety_stock = calculate_safety_stock(comp_data['Units_Used'].values, lead_time, service_level)
+       def calculate_safety_stock(demand_data, lead_time, service_level):
+    # Calculate standard deviation of demand
+    demand_std = np.std(demand_data)
+    
+    # Z-score based on service level (example: 95% -> 1.65)
+    from scipy import stats
+    z_score = stats.norm.ppf(service_level)
+    
+    # Safety stock formula
+    safety_stock = z_score * demand_std * np.sqrt(lead_time)
+    
+    return safety_stock
         optimal_inventory = calculate_optimal_inventory(forecast, lead_time, safety_stock)
         order_quantity = calculate_order_quantity(optimal_inventory, current_stock)
         old_method_inventory = estimate_old_method_inventory(comp_data['Units_Used'].values)
