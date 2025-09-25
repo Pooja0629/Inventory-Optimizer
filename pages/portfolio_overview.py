@@ -146,7 +146,7 @@ with tab2:
                                     title="Unit Cost Distribution",
                                     template="plotly_white",
                                     nbins=20)
-        fig_cost_hist.update_layout(xaxis_title="Unit Cost ($)", yaxis_title="Number of Components")
+        fig_cost_hist.update_layout(xaxis_title="Unit Cost (₹)", yaxis_title="Number of Components")
         st.plotly_chart(fig_cost_hist, use_container_width=True)
     
     with col2:
@@ -155,7 +155,7 @@ with tab2:
         fig_expensive = px.bar(top_expensive, x='Component_ID', y='Unit_Cost',
                               title="Top 10 Most Expensive Components",
                               template="plotly_white")
-        fig_expensive.update_layout(xaxis_title="Component", yaxis_title="Unit Cost ($)")
+        fig_expensive.update_layout(xaxis_title="Component", yaxis_title="Unit Cost (₹)")
         st.plotly_chart(fig_expensive, use_container_width=True)
 
 with tab3:
@@ -180,7 +180,7 @@ with tab3:
                           color='Category',
                           title="Top 10 Components by Inventory Value",
                           template="plotly_white")
-        fig_value.update_layout(xaxis_title="Component", yaxis_title="Inventory Value ($)")
+        fig_value.update_layout(xaxis_title="Component", yaxis_title="Inventory Value (₹)")
         st.plotly_chart(fig_value, use_container_width=True)
 
 with tab4:
