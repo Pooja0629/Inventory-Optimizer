@@ -211,7 +211,7 @@ if 'results' in st.session_state:
         st.plotly_chart(fig5, use_container_width=True)
     
     # Recommendations Section
-    st.header("💡 Recommendations & Next Steps")
+    st.header("💡 Recommendations")
     
     if results['capital_released'] > 10000:
         st.success("**🎯 High Impact Opportunity**: Consider reinvesting released capital in high-return projects")
@@ -219,27 +219,6 @@ if 'results' in st.session_state:
         st.info("**📈 Good Progress**: Continue optimizing other inventory components")
     else:
         st.warning("**🔍 Review Needed**: Analyze specific components for improvement opportunities")
-    
-    # Action Items
-    st.subheader("🚀 Recommended Actions")
-    
-    action_col1, action_col2 = st.columns(2)
-    
-    with action_col1:
-        st.info("""
-        **Immediate Actions (1-2 weeks):**
-        - Review critical stock alerts
-        - Place urgent purchase orders
-        - Update safety stock levels
-        """)
-    
-    with action_col2:
-        st.info("""
-        **Strategic Actions (1-3 months):**
-        - Implement continuous monitoring
-        - Expand AI optimization to all components
-        - Train team on new processes
-        """)
     
     # Export Options
     st.header("📤 Export Report")
