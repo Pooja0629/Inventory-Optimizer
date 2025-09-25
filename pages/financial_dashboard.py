@@ -90,10 +90,10 @@ if 'results' in st.session_state:
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
-        st.metric("Annual Savings", f"${results['annual_savings']:,.2f}")
+        st.metric("Annual Savings", f"₹{results['annual_savings']:,.2f}")
     
     with col2:
-        st.metric("Capital Released", f"${results['capital_released']:,.2f}")
+        st.metric("Capital Released", f"₹{results['capital_released']:,.2f}")
     
     with col3:
         inventory_reduction = results['inventory_reduction']
@@ -207,7 +207,7 @@ if 'results' in st.session_state:
                      title="Inventory Value vs Potential Savings by Component",
                      template="plotly_white",
                      barmode='group')
-        fig5.update_layout(xaxis_title="Component", yaxis_title="Amount ($)")
+        fig5.update_layout(xaxis_title="Component", yaxis_title="Amount (₹)")
         st.plotly_chart(fig5, use_container_width=True)
     
     # Recommendations Section
