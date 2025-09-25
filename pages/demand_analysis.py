@@ -1,7 +1,9 @@
 import sys
 import os
+import numpy as np
+from scipy import stats
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) 
-from calculations import *
 
 # Try importing calculations
 try:
@@ -22,6 +24,19 @@ from model import get_forecast
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+
+# Define the function at the top level (outside any other blocks)
+def calculate_safety_stock(demand_data, lead_time, service_level):
+    # Calculate standard deviation of demand
+    demand_std = np.std(demand_data)
+    
+    # Z-score based on service level (example: 95% -> 1.65)
+    z_score = stats.norm.ppf(service_level)
+    
+    # Safety stock formula
+    safety_stock = z_score * demand_std * np.sqrt(lead_time)
+    
+    return safety_stock
 
 # Streamlit App
 st.title("📈 Demand Analysis")
@@ -66,18 +81,9 @@ with col_right:
     st.subheader("⚡ AI Recommendations")
     if st.button("🚀 Run AI Insights"):
         forecast = get_forecast(comp_data, periods=lead_time + 60)
-       def calculate_safety_stock(demand_data, lead_time, service_level):
-    # Calculate standard deviation of demand
-    demand_std = np.std(demand_data)
-    
-    # Z-score based on service level (example: 95% -> 1.65)
-    from scipy import stats
-    z_score = stats.norm.ppf(service_level)
-    
-    # Safety stock formula
-    safety_stock = z_score * demand_std * np.sqrt(lead_time)
-    
-    return safety_stock
+        
+        # Now call the function (don't define it here)
+        safety_stock = calculate_safety_stock(comp_data['Units_Used'].values, lead_time, service_level)
         optimal_inventory = calculate_optimal_inventory(forecast, lead_time, safety_stock)
         order_quantity = calculate_order_quantity(optimal_inventory, current_stock)
         old_method_inventory = estimate_old_method_inventory(comp_data['Units_Used'].values)
