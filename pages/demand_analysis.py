@@ -167,7 +167,7 @@ with col2:
             st.metric("Order Quantity", f"{results['order_quantity']:.0f} units")
         
         with col2:
-            st.metric("Annual Savings", f"${results['annual_savings']:,.2f}")
+            st.metric("Annual Savings", f"₹{results['annual_savings']:,.2f}")
             st.metric("Inventory Reduction", f"{results['inventory_reduction']:.1f}%")
             st.metric("Capital Released", f"₹{results['capital_released']:,.2f}")
         
