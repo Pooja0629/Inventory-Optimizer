@@ -65,7 +65,7 @@ avg_daily_demand = comp_data['Units_Used'].mean()
 st.sidebar.header("📊 Component Details")
 st.sidebar.metric("Current Stock", f"{current_stock} units")
 st.sidebar.metric("Average Daily Demand", f"{avg_daily_demand:.2f} units")
-st.sidebar.metric("Unit Cost", f"${unit_cost:.2f}")
+st.sidebar.metric("Unit Cost", f"₹{unit_cost:.2f}")
 st.sidebar.metric("Category", category)
 
 # Configuration Parameters
@@ -169,7 +169,7 @@ with col2:
         with col2:
             st.metric("Annual Savings", f"${results['annual_savings']:,.2f}")
             st.metric("Inventory Reduction", f"{results['inventory_reduction']:.1f}%")
-            st.metric("Capital Released", f"${results['capital_released']:,.2f}")
+            st.metric("Capital Released", f"₹{results['capital_released']:,.2f}")
         
         # Stock Status Warning
         if current_stock < results['safety_stock']:
@@ -182,7 +182,7 @@ with col2:
         # Quick Actions
         st.subheader("🚀 Recommended Actions")
         if results['order_quantity'] > 0:
-            st.info(f"**Purchase Recommendation**: Order {results['order_quantity']:.0f} units of {component} at ${unit_cost:.2f} each")
+            st.info(f"**Purchase Recommendation**: Order {results['order_quantity']:.0f} units of {component} at ₹{unit_cost:.2f} each")
         else:
             st.info("**No immediate action needed**: Current stock levels are sufficient")
 
