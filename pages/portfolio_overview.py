@@ -64,10 +64,10 @@ with col2:
     st.metric("Total Categories", current_df['Category'].nunique())
 
 with col3:
-    st.metric("Total Inventory Value", f"${total_inventory_value:,.2f}")
+    st.metric("Total Inventory Value", f"₹{total_inventory_value:,.2f}")
 
 with col4:
-    st.metric("Average Unit Cost", f"${avg_unit_cost:.2f}")
+    st.metric("Average Unit Cost", f"₹{avg_unit_cost:.2f}")
 
 # Component Details Section
 if selected_component != "All Components":
@@ -87,11 +87,11 @@ if selected_component != "All Components":
             st.metric("Avg Daily Demand", f"{avg_demand:.1f} units")
         
         with col3:
-            st.metric("Unit Cost", f"${component_data['Unit_Cost']:.2f}")
+            st.metric("Unit Cost", f"₹{component_data['Unit_Cost']:.2f}")
         
         with col4:
             inventory_value = component_data['Current_Stock'] * component_data['Unit_Cost']
-            st.metric("Inventory Value", f"${inventory_value:,.2f}")
+            st.metric("Inventory Value", f"₹{inventory_value:,.2f}")
         
         # Component-specific charts
         col_chart1, col_chart2 = st.columns(2)
@@ -242,7 +242,7 @@ with col1:
     
     st.info("**High Value Components:**")
     for _, comp in high_value_components.iterrows():
-        st.write(f"- {comp['Component_ID']}: ${comp['Inventory_Value']:,.2f}")
+        st.write(f"- {comp['Component_ID']}: ₹{comp['Inventory_Value']:,.2f}")
 
 with col2:
     st.subheader("📈 Portfolio Health")
